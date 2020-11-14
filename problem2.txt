@@ -1,0 +1,76 @@
+Input: [7, 9, 'hi', 12, 'hi', 7, 53]
+Output: [7, 9, 'hi', 12, 53]
+
+const Input = [7, 9, 'hi', 12, 'hi', 7, 53];
+
+const uniqueArrayFilter = Input.filter((c, index) =>{
+  return Input.indexOf(c) === index;
+});
+console.log(uniqueArrayFilter);
+
+7 = 0, 0,
+9 = 1, 1,
+'hi' = 2, 3, false
+12 = 3, 3,
+'hi' = 2, 4, false
+7 = 0, 5,
+53 = 6, 6
+////////
+
+array: [7, 9, 'hi', 12, 'hi', 7, 53]
+const uniqueArrayFilter = (array, index) => {
+  const len = array.length;
+  if (index > len){
+    return array;
+  }
+  if (!index){
+    let index = 0;
+  }
+  const element = array[index];
+  for (let i = 1; i < len; i++){
+    if (array[i] == element){
+      array.splice(array[i], 1);
+    }
+  }
+  index++;
+  return uniqueArrayFilter(array,index)
+}
+
+/////
+array: [7, 9, 'hi', 12, 'hi', 7, 53]
+
+function uniqueArrayFilter(array){
+  let alteredArray = array;
+  let len = alteredArray.length;
+  foreach(element of alteredArray){
+    for (let i = 1; i < len; i++){
+      if (alteredArray[i] == element){
+        array.splice(alteredArray[i],1);
+      }
+    }
+  }
+  return alteredArray;
+}
+
+////////////////////
+///////BONUS////////
+////////////////////
+prob 5
+
+//I'm using insertion sort here
+const arr = [9, 2, 7, 12];
+
+const insertionSort = array => {
+  const len = array.length;
+  for (let i = 1; i < len; i++) { // looping through array 
+    let element = array[i]; // the element being sorted
+    let j = i-1; // j is the element before the element we're sorting
+
+    for (j; j >= 0 && array[j] > element; j--) { //runs only if array[j] is bigger than element; we want small values moved to the left
+      array[j + 1] = array[j]; //slide over to the right to make room for element
+    }
+    array[j + 1] = element; //putting the element in it's new space, or back home if there was no iteration.
+  }
+  return array;
+};
+console.log(insertionSort(arr)); // [ 2, 7, 9, 12 ]
